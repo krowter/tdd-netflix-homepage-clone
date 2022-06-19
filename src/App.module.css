@@ -1,0 +1,21 @@
+.header {
+    background: linear-gradient(to bottom, var(--dark), transparent);
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+}
+
+.header > div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--container-padding);
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.icons {
+    height: 24px;
+    width: 24px;
+}

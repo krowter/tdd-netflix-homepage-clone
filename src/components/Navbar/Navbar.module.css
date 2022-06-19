@@ -1,0 +1,18 @@
+.nav {
+    align-items: center;
+    border: none;
+    display: flex;
+    padding: 10px 0;
+}
+
+.nav ul {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.nav a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}

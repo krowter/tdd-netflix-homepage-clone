@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 41" width="196" height="41">
+	<title>New Project</title>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 41px;fill: #ff0000;font-weight: 700;font-family: "DejaVuSans-Bold", "DejaVu Sans" } 
+	</style>
+	<text id="IndoFlix" style="transform: matrix(1,0,0,1,6,4)" >
+		<tspan x="0" y="31.2" class="t0">I</tspan><tspan  y="31.2" class="t0">n</tspan><tspan  y="31.2" class="t0">d</tspan><tspan  y="31.2" class="t0">o</tspan><tspan  y="31.2" class="t0">F</tspan><tspan  y="31.2" class="t0">l</tspan><tspan  y="31.2" class="t0">i</tspan><tspan  y="31.2" class="t0">x</tspan><tspan  y="31.2" class="t0">
+</tspan>
+	</text>
+</svg>
