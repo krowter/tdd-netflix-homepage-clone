@@ -1,0 +1,50 @@
+.wrapper {
+  position: relative;
+  width: 320px;
+  height: 180px;
+}
+
+.wrapper img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.wrapper img,
+.wrapper iframe {
+  width: 320px;
+  height: 180px;
+}
+
+.exit {
+  animation: fadeOut 1s forwards;
+  animation-delay: 4s;
+}
+
+.enter {
+  animation: fadeIn 1s forwards;
+}
+
+.scaleUp {
+  transform: scale(1.2);
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

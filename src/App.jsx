@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
+import { Hero } from "./components/Hero/Hero";
+import { VideoThumbnail } from "./components/VideoThumbnail";
 
 import SearchIcon from "/src/assets/icons/ic_search.svg";
 import BellIcon from "/src/assets/icons/ic_bell.svg";
-import HeroImage from '/src/assets/hero-image.jpg'
+
+import { getThumbnailUrlFromVideo, getEmbedUrlFromVideo } from "./utils/helper";
 
 import styles from "./App.module.css";
 
 function App() {
-  const heroSectionProps = {
-    image: HeroImage,
-    description:
-      "A high school chemistry teacher dying of cancer teams with a former student to secure his family's future by manufacturing and selling crystal meth.",
-    playUrl: "/watch/breaking-bad",
-    onMoreInfoClick: () => alert("More info clicked!")
-  };
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetch("/videos.json")
+      .then((res) => res.json())
+      .then(setVideos);
+  }, []);
 
   return (
     <>
@@ -31,7 +33,23 @@ function App() {
         </div>
       </header>
 
-      <Hero {...heroSectionProps} />
+      <Hero
+        onMoreInfoClick={() => alert("more info clicked")}
+        onPlayClick={() => alert("play clicked")}
+      />
+
+      <section className={styles.videoHorizontalList}>
+        <h2>Continue Watching</h2>
+        <div>
+          {videos.map((video) => (
+            <VideoThumbnail
+              key={video.url}
+              videoPreview={getEmbedUrlFromVideo(video)}
+              thumbnail={getThumbnailUrlFromVideo(video)}
+            />
+          ))}
+        </div>
+      </section>
     </>
   );
 }

@@ -10,6 +10,18 @@
   --grey: #505051;
 }
 
+@media screen and (min-width: 1920px) {
+  :root {
+    --container-width: 1660px;
+  }
+}
+
+@media screen and (min-width: 2160px) {
+  :root {
+    --container-width: 1920px;
+  }
+}
+
 html, body, #root {
   margin: 0;
   height: 100%;

@@ -1,21 +1,42 @@
 .header {
-    background: linear-gradient(to bottom, var(--dark), transparent);
-    position: fixed;
-    z-index: 2;
-    width: 100%;
-    top: 0;
+  background: linear-gradient(to bottom, var(--dark), transparent);
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  top: 0;
 }
 
 .header > div {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 var(--container-padding);
-    max-width: var(--container-width);
-    margin: 0 auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--container-padding);
+  max-width: var(--container-width);
+  margin: 0 auto;
 }
 
 .icons {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
+}
+
+.videoHorizontalList {
+  margin-left: calc((100vw - var(--container-width)) / 2);
+  overflow-y: visible;
+}
+
+.videoHorizontalList > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-height: 250px;
+  min-height: 250px;
+  max-width: var(--container-width);
+  overflow-x: auto;
+  overflow-y: visible;
+  position: relative;
+}
+
+.videoHorizontalList > h2 {
+  font-weight: 600;
 }

@@ -1,80 +1,61 @@
-import { render, screen, within } from "@testing-library/react";
-import { beforeEach, it, vi } from "vitest";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import { it, vi } from "vitest";
 import "@testing-library/jest-dom";
 
-import { Hero } from ".";
+import { Hero } from "./Hero";
 
-import HeroImage from "/src/assets/hero-image.jpg";
-
-const baseHeroProps = {
-  image: HeroImage,
-  description:
-    "A high school chemistry teacher dying of cancer teams with a former student to secure his family's future by manufacturing and selling crystal meth.",
-  playUrl: "/watch/breaking-bad",
-  onMoreInfoClick: () => {},
-};
-
-let rendered;
-
-beforeEach(() => {
-  // runs before every it()
-  rendered = render(<Hero {...baseHeroProps} />);
+it("should render correctly", () => {
+  render(<Hero />);
 });
 
-afterEach(() => {
-  vi.clearAllMocks();
+it("should render an image with src heroimage.jpg", () => {
+  render(<Hero />);
+
+  const heroImage = screen.getByTestId("hero-image");
+
+  expect(heroImage).toHaveAttribute("src", "/src/assets/hero-image.jpg");
 });
 
-it("should render a section", () => {
-  expect(screen.getByTestId("hero-section")).toBeInTheDocument();
-});
+it("should render an hero info with description and two play buttons", () => {
+  render(<Hero />);
 
-it("should render hero image from props", () => {
-  expect(
-    screen.getByRole("img", {
-      name: "breaking bad poster",
-    })
-  ).toHaveAttribute("src", "/src/assets/hero-image.jpg");
-});
-
-it("should have a description text", () => {
-  expect(screen.getByTestId("hero-description")).toHaveTextContent(
-    "A high school chemistry teacher dying of cancer teams with a former student to secure his family's future by manufacturing and selling crystal meth."
+  const heroDescription = screen.getByText(
+    "Premise. Set in Albuquerque, New Mexico, between 2008 and 2010, Breaking Bad follows Walter White, a meek high school chemistry teacher who transforms into a ruthless player in the local methamphetamine drug trade, driven by a desire to financially provide for his family after being diagnosed with terminal lung cancer."
   );
+
+  expect(heroDescription).toBeInTheDocument();
 });
 
-it("should have a play button that links to watchpage", () => {
-  const playButton = screen.getByRole("link", {
-    name: "Play",
-  });
-  expect(playButton).toHaveAttribute("href", baseHeroProps.playUrl);
-  expect(within(playButton).getByRole('img')).toHaveAttribute('src', '/src/assets/icons/ic_triangle-right.svg')
-});
+it("should render play and moreinfo buttons with appropriate icons", () => {
+  render(<Hero />);
 
-it("should have a more info button that trigger onMoreInfoClick props when clicked", async () => {
-  const moreInfoButton = screen.getByRole("button", {
-    name: "More Info",
-  });
+  const playButton = screen.getByRole("button", { name: "Play" });
+  const moreInfoButton = screen.getByRole("button", { name: "More Info" });
   
-  expect(within(moreInfoButton).getByRole('img')).toHaveAttribute('src', '/src/assets/icons/ic_info.svg')
+  expect(within(playButton).getByRole('img', '/src/assets/icons/ic_info.svg')).toBeInTheDocument();
+  expect(within(moreInfoButton).getByRole('img', '/src/assets/icons/ic_triangle-right.svg')).toBeInTheDocument();
 });
 
-it("should have a more info button that trigger onMoreInfoClick props when clicked", async () => {
-  const user = userEvent.setup();
+it("should call onPlayClick props on button play clicked", () => {
+  const playClickSpy = vi.fn();
 
-  const moreInfoClickSpy = vi.fn();
+  render(<Hero onPlayClick={playClickSpy} />);
 
-  // rerender to update props with a spy
-  rendered.rerender(
-    <Hero {...baseHeroProps} onMoreInfoClick={moreInfoClickSpy} />
-  );
+  const playButton = screen.getByRole("button", { name: "Play" });
 
-  const moreInfoButton = screen.getByRole("button", {
-    name: "More Info",
-  });
+  fireEvent.click(playButton);
 
-  await user.click(moreInfoButton);
+  expect(playClickSpy).toHaveBeenCalledTimes(1);
+});
 
-  expect(moreInfoClickSpy).toHaveBeenCalledTimes(1);
+it("should call onPlayClick props on button play clicked", () => {
+  const moreInfoSpy = vi.fn();
+
+  render(<Hero onMoreInfoClick={moreInfoSpy} />);
+
+  const moreInfoButton = screen.getByRole("button", { name: "More Info" });
+
+  fireEvent.click(moreInfoButton);
+
+  expect(moreInfoSpy).toHaveBeenCalledTimes(1);
 });

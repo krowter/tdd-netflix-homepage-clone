@@ -1,5 +1,7 @@
 .heroSection {
   position: relative;
+  margin-bottom: -200px;
+  z-index: -1;
 }
 
 .heroImage {
@@ -50,6 +52,7 @@
   gap: 4px;
   padding: 0 24px;
   font-size: 1.15rem;
+  cursor: pointer;
 }
 
 .playButton {
