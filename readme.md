@@ -1,6 +1,6 @@
 # Netflix homepage clone
 
-This repo serves as demo for explaining TDD during Reactjs Indonesia meetup 2022.
+This repo serves as a demo for explaining TDD during Reactjs Indonesia meetup 2022.
 
 ![web preview](./readme-assets/preview.png)
 
